@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج البحث - استاذنا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        .search-results {
+            padding: 60px 0;
+        }
+        
+        .search-results-header {
+            margin-bottom: 30px;
+        }
+        
+        .search-results-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .search-results-header p {
+            color: #666;
+        }
+        
+        .search-results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .search-result-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .search-result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-category {
+            display: inline-block;
+            background-color: #e9f5ff;
+            color: #007bff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .search-result-card h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .result-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .result-meta span i {
+            margin-left: 5px;
+            color: #007bff;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .no-results i {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .no-results h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .no-results p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .search-again {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>استاذنا</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#">المراحل الدراسية</a></li>
+                    <li><a href="#">ملازم السادس الابتدائي</a></li>
+                    <li><a href="#">ملازم الثالث المتوسط</a></li>
+                    <li><a href="#">ملازم الرابع العلمي</a></li>
+                    <li><a href="#">ملازم الخامس العلمي</a></li>
+                    <li><a href="#">ملازم السادس العلمي</a></li>
+                    <li><a href="#">ملازم السادس الأدبي</a></li>
+                    <li><a href="#">أسئلة سادس ابتدائي</a></li>
+                    <li><a href="#">أسئلة ثالث متوسط</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li>نتائج البحث</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Search Results Section -->
+    <section class="search-results">
+        <div class="container">
+            <div class="search-results-header">
+                <h1>نتائج البحث</h1>
+                <p id="search-summary">جاري تحميل النتائج...</p>
+            </div>
+            
+            <div id="search-results-container">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+            
+            <div class="search-again">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="ابحث عن ملزمة، كتاب، أو مادة...">
+                    <button type="button" id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>الأقسام</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#">المراحل الدراسية</a></li>
+                        <li><a href="#">النتائج</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>تواصل معنا</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> info@yallanadros.com</li>
+                        <li><i class="fas fa-phone"></i> +964 123 456 789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> بغداد، العراق</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>تابعنا</h3>
+                                        <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة © استاذنا 2023</p>
+                <p>هذا الموقع يقدم خدمة التعليم والمذكرات للطلاب بشكل مجاني</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            const searchSummary = document.getElementById('search-summary');
+            const resultsContainer = document.getElementById('search-results-container');
+            
+            // Get search results from sessionStorage
+            const searchResults = JSON.parse(sessionStorage.getItem('searchResults') || '[]');
+            const searchQuery = sessionStorage.getItem('searchQuery') || '';
+            
+            // Update search input with the previous query
+            if (searchQuery) {
+                searchInput.value = searchQuery;
+            }
+            
+            // Display search results
+            function displayResults() {
+                // Update search summary
+                if (searchResults.length > 0) {
+                    searchSummary.textContent = `تم العثور على ${searchResults.length} نتيجة لبحثك عن "${searchQuery}"`;
+                    
+                    // Create results grid
+                    const resultsGrid = document.createElement('div');
+                    resultsGrid.className = 'search-results-grid';
+                    
+                    // Add each result
+                    searchResults.forEach(result => {
+                        const resultCard = document.createElement('div');
+                        resultCard.className = 'search-result-card';
+                        
+                        resultCard.innerHTML = `
+                            <span class="result-category">${result.category}</span>
+                            <h3><a href="${result.url}">${result.title}</a></h3>
+                            <div class="result-meta">
+                                <span><i class="fas fa-graduation-cap"></i>${result.grade}</span>
+                                <span><i class="fas fa-book"></i>${result.subject}</span>
+                            </div>
+                            <a href="${result.url}" class="btn-primary">عرض التفاصيل</a>
+                        `;
+                        
+                        resultsGrid.appendChild(resultCard);
+                    });
+                    
+                    resultsContainer.appendChild(resultsGrid);
+                } else {
+                    // No results found
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    
+                    noResults.innerHTML = `
+                        <i class="fas fa-search"></i>
+                        <h2>لم يتم العثور على نتائج</h2>
+                        <p>لم نتمكن من العثور على نتائج مطابقة لبحثك "${searchQuery}". يرجى تجربة كلمات بحث أخرى.</p>
+                    `;
+                    
+                    resultsContainer.appendChild(noResults);
+                    searchSummary.textContent = `لا توجد نتائج لبحثك عن "${searchQuery}"`;
+                }
+            }
+            
+            // Define search data - this would ideally come from your backend
+            const searchData = [
+                {
+                    title: "كتاب الرياضيات للصف الأول الابتدائي",
+                    category: "كتب",
+                    grade: "الأول الابتدائي",
+                    subject: "الرياضيات",
+                    url: "math-first-grade.html"
+                },
+                {
+                    title: "كتاب العلوم للصف الأول الابتدائي",
+                    category: "كتب",
+                    grade: "الأول الابتدائي",
+                    subject: "العلوم",
+                    url: "science-first-grade.html"
+                },
+                {
+                    title: "كتاب القراءة للصف الأول الابتدائي",
+                    category: "كتب",
+                    grade: "الأول الابتدائي",
+                    subject: "القراءة",
+                    url: "reading-first-grade.html"
+                },
+                {
+                    title: "كتاب الانكليزي للصف الأول الابتدائي",
+                    category: "كتب",
+                    grade: "الأول الابتدائي",
+                    subject: "الانكليزي",
+                    url: "english-first-grade.html"
+                },
+                {
+                    title: "كتاب الرياضيات للصف الثاني الابتدائي",
+                    category: "كتب",
+                    grade: "الثاني الابتدائي",
+                    subject: "الرياضيات",
+                    url: "math-second-grade.html"
+                },
+                {
+                    title: "كتاب العلوم للصف الثاني الابتدائي",
+                    category: "كتب",
+                    grade: "الثاني الابتدائي",
+                    subject: "العلوم",
+                    url: "science-second-grade.html"
+                },
+                {
+                    title: "ملزمة الرياضيات للصف السادس الابتدائي",
+                    category: "ملازم",
+                    grade: "السادس الابتدائي",
+                    subject: "الرياضيات",
+                    url: "math-sixth-grade-notes.html"
+                },
+                {
+                    title: "ملزمة العلوم للصف السادس الابتدائي",
+                    category: "ملازم",
+                    grade: "السادس الابتدائي",
+                    subject: "العلوم",
+                    url: "science-sixth-grade-notes.html"
+                },
+                {
+                    title: "ملزمة الرياضيات للصف الثالث المتوسط",
+                    category: "ملازم",
+                    grade: "الثالث المتوسط",
+                    subject: "الرياضيات",
+                    url: "math-third-intermediate-notes.html"
+                },
+                {
+                    title: "ملزمة الفيزياء للصف السادس العلمي",
+                    category: "ملازم",
+                    grade: "السادس العلمي",
+                    subject: "الفيزياء",
+                    url: "physics-sixth-scientific-notes.html"
+                },
+                {
+                    title: "ملزمة الكيمياء للصف السادس العلمي",
+                    category: "ملازم",
+                    grade: "السادس العلمي",
+                    subject: "الكيمياء",
+                    url: "chemistry-sixth-scientific-notes.html"
+                },
+                {
+                    title: "ملزمة الأحياء للصف السادس العلمي",
+                    category: "ملازم",
+                    grade: "السادس العلمي",
+                    subject: "الأحياء",
+                    url: "biology-sixth-scientific-notes.html"
+                }
+            ];
+            
+            // Function to perform search
+            function performSearch() {
+                const query = searchInput.value.trim().toLowerCase();
+                
+                if (query.length < 2) {
+                    alert("الرجاء إدخال كلمة بحث لا تقل عن حرفين");
+                    return;
+                }
+                
+                // Filter results based on search query
+                const results = searchData.filter(item => {
+                    return (
+                        item.title.toLowerCase().includes(query) ||
+                        item.subject.toLowerCase().includes(query) ||
+                        item.grade.toLowerCase().includes(query) ||
+                        item.category.toLowerCase().includes(query)
+                    );
+                });
+                
+                // Store results in sessionStorage
+                sessionStorage.setItem('searchResults', JSON.stringify(results));
+                sessionStorage.setItem('searchQuery', query);
+                
+                // Reload the page to show new results
+                window.location.reload();
+            }
+            
+            // Add event listeners for search on this page
+            searchButton.addEventListener('click', performSearch);
+            
+            // Add event listener for Enter key
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Display results when page loads
+            displayResults();
+            
+            // Back to top button functionality
+            const backToTopButton = document.getElementById('backToTop');
+            
+            if (backToTopButton) {
+                // Initially hide the button
+                backToTopButton.style.display = 'none';
+                
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        backToTopButton.style.display = 'block';
+                    } else {
+                        backToTopButton.style.display = 'none';
+                    }
+                });
+                
+                backToTopButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
